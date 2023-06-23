@@ -10,4 +10,9 @@ cd ~/.vim/bundle && \
 git clone https://github.com/lacework/vim-lql.git
 ```
 
+Install using [Plugged](https://github.com/junegunn/vim-plug)
+```
+Plug 'lacework/vim-lql'
+```
+
 Alternatively, should be compatible with any package manager of your choice.
