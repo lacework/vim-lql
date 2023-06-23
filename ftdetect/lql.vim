@@ -1,4 +1,11 @@
-" Match all yaml files under lacework-content/queries as lql files
-au BufRead,BufNewFile */lacework-content/queries/*.yaml set filetype=lql
-" Match all yaml files under services/metadata-library's queries folder as lql
-au BufRead,BufNewFile */services/metadata-library-common/*/queries/*.yaml set filetype=lql
+" Test all yaml files to see if it's lql
+au BufRead,BufNewFile *.yaml,*.yml call CheckForLQL()
+
+
+function! CheckForLQL()
+    if getline(1) =~ '^.*queryId:.*$' && getline(2) =~ '^.*queryText:.*$'
+      	set filetype=lql
+	elseif getline(1) =~ '^---.*$' && getline(2) =~ '^.*queryId:.*$' && getline(3) =~ '^.*queryText:.*$'
+		set filetype=lql
+    endif
+endfunction
